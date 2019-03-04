@@ -8,11 +8,11 @@ const ADD = "add";
 const REDUCEBY = "reduceby";
 
 //actions
-const incrementAction = {
+export const incrementAction = {
   type: INCREMENT
 };
 
-const decrementAction = {
+export const decrementAction = {
   type: DECREMENT
 };
 
