@@ -1,13 +1,11 @@
 import { createStore } from "redux";
 
 //action types
-
 const INCREMENT = "increment";
 const DECREMENT = "decrement";
 const RESET = "reset";
 
 //actions
-
 const incrementAction = {
   type: INCREMENT
 };
@@ -38,10 +36,13 @@ function counterReducer(state = initialValue, action) {
   return (predicates[action.type] || identity)(state, action);
 }
 
+//this is how to createStore ;-)
 export const store = createStore(counterReducer);
 
+//store destructurisation
 const { getState, dispatch } = store;
 
+//some dummy actions for checking in console if everything is gucci
 console.log(getState());
 dispatch(incrementAction);
 console.log(getState());
