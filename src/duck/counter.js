@@ -1,11 +1,13 @@
 import { createStore } from "redux";
 
-//aciton types
+//action types
+
 const INCREMENT = "increment";
 const DECREMENT = "decrement";
 const RESET = "reset";
 
 //actions
+
 const incrementAction = {
   type: INCREMENT
 };
@@ -18,26 +20,32 @@ const resetAction = {
   type: RESET
 };
 
-//predicates for reducer
-const predicates = {
-  [INCREMENT]: state => state + 1,
-  [DECREMENT]: state => state - 1,
-  [RESET]: () => initialState
-};
+const initialValue = 0;
 
-//initial state value
-const initialState = 10;
-
-//for reducer initial run
-const warmup = x => x;
-
-//reducer (oldState, action) => newState
-function counterReducer(state = initialState, action) {
-  return (predicates[action] || warmup)(state, action);
+//REDUCER BE LIKE : (oldState, action) => newState
+function counterReducer(state = initialValue, action) {
+  if (action.type === INCREMENT) {
+    return state + 1;
+  }
+  if (action.type === DECREMENT) {
+    return state - 1;
+  }
+  if (action.type === RESET) {
+    return initialValue;
+  }
+  return state;
 }
 
 export const store = createStore(counterReducer);
 
-console.log(store.getState());
-store.dispatch(decrementAction);
-console.log(store.getState());
+const { getState, dispatch } = store;
+
+console.log(getState());
+dispatch(incrementAction);
+console.log(getState());
+dispatch(incrementAction);
+console.log(getState());
+dispatch(decrementAction);
+console.log(getState());
+dispatch(resetAction);
+console.log(getState());
