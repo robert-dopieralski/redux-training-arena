@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { store, incrementAction, decrementAction } from "./duck/counter";
+import {
+  store,
+  incrementAction,
+  decrementAction,
+  resetAction
+} from "./duck/counter";
 
 class CounterApp extends Component {
   state = {
@@ -31,6 +35,9 @@ class CounterApp extends Component {
         </button>
         <button onClick={() => store.dispatch(decrementAction)}>
           Decrement counter value
+        </button>
+        <button onClick={() => store.dispatch(resetAction)}>
+          Reset counter value
         </button>
       </div>
     );

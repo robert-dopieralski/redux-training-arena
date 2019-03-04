@@ -16,7 +16,7 @@ export const decrementAction = {
   type: DECREMENT
 };
 
-const resetAction = {
+export const resetAction = {
   type: RESET
 };
 
@@ -66,7 +66,8 @@ const actions = [
   decrementAction,
   add(100),
   resetAction,
-  reduceby(50)
+  reduceby(50),
+  resetAction
 ];
 
 //actions launcher (used short hand notation here) ==> works same way as  === > actions.forEach(action => dispatch(action))
