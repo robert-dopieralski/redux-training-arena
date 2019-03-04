@@ -20,12 +20,12 @@ export const resetAction = {
   type: RESET
 };
 
-const add = value => ({
+export const add = value => ({
   type: ADD,
   value
 });
 
-const reduceby = value => ({
+export const reduceby = value => ({
   type: REDUCEBY,
   value
 });

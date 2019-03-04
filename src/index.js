@@ -6,7 +6,9 @@ import {
   store,
   incrementAction,
   decrementAction,
-  resetAction
+  resetAction,
+  add,
+  reduceby
 } from "./duck/counter";
 
 class CounterApp extends Component {
@@ -25,6 +27,14 @@ class CounterApp extends Component {
     this.unsubscribe();
   }
 
+  handleAction = (event, act) => {
+    console.log(event.key);
+    if (event.key === "Enter") {
+      store.dispatch(act(parseInt(event.target.value) || 0));
+      event.target.value = "";
+    }
+  };
+
   render() {
     const { counterValue } = this.state;
     return (
@@ -39,6 +49,20 @@ class CounterApp extends Component {
         <button onClick={() => store.dispatch(resetAction)}>
           Reset counter value
         </button>
+        <div>
+          <label>adding field, submit on enter</label>
+          <input
+            type="number"
+            onKeyUp={event => this.handleAction(event, add)}
+          />
+        </div>
+        <div>
+          <label>reducing field, submit on enter</label>
+          <input
+            type="number"
+            onKeyUp={event => this.handleAction(event, reduceby)}
+          />
+        </div>
       </div>
     );
   }
