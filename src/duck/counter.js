@@ -54,19 +54,20 @@ function counterReducer(state = initialValue, action) {
 export const store = createStore(counterReducer);
 
 //store destructurisation
-const { getState, dispatch } = store;
+const { getState, dispatch, subscribe } = store;
 
-//some dummy actions for checking in console if everything is gucci
-console.log(getState()); //0 <--expected
-dispatch(incrementAction);
-console.log(getState()); //1 <--expected
-dispatch(incrementAction);
-console.log(getState()); //2 <--expected
-dispatch(decrementAction);
-console.log(getState()); //1 <--expected
-dispatch(resetAction);
-console.log(getState()); //0 <--expected
-dispatch(add(10231));
-console.log(getState()); //10231 <--expected
-dispatch(reduceby(5123));
-console.log(getState()); //5108 <--expected
+//subscribe for changes
+subscribe(() => console.log("current state is :", getState()));
+
+//some dummy actions for checking in console if everything is gucci, now fixed to array ;D
+const actions = [
+  incrementAction,
+  incrementAction,
+  decrementAction,
+  add(100),
+  resetAction,
+  reduceby(50)
+];
+
+//actions launcher (used short hand notation here) ==> works same way as  === > actions.forEach(action => dispatch(action))
+actions.forEach(dispatch);
